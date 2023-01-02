@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import SwiftUI
 
 final class ContactsProvider {
     static let shared = ContactsProvider()
@@ -14,6 +15,10 @@ final class ContactsProvider {
     
     var viewContext: NSManagedObjectContext {
         persistentContainer.viewContext
+    }
+    
+    var newContext: NSManagedObjectContext {
+        persistentContainer.newBackgroundContext()
     }
     
     private init() {
@@ -26,4 +31,10 @@ final class ContactsProvider {
         }
     }
     
+}
+
+extension EnvironmentValues {
+    static var isPreview: Bool {
+        return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+    }
 }

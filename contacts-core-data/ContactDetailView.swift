@@ -8,38 +8,40 @@
 import SwiftUI
 
 struct ContactDetailView: View {
+    let contact: Contact
+    
     var body: some View {
         List {
             Section("General") {
                 LabeledContent {
-                    Text("Email Here")
+                    Text(contact.email)
                 } label: {
                     Text("Email")
                 }
                 LabeledContent {
-                    Text("Phone Number Here")
+                    Text(contact.phoneNumber)
                 } label: {
                     Text("Phone Number")
                 }
                 LabeledContent {
-                    Text("Birthday Here")
+                    Text(contact.dob, style: .date)
                 } label: {
                     Text("Birthday")
                 }
             }
             
             Section("Notes") {
-                Text("")
+                Text(contact.notes)
             }
         }
-        .navigationTitle("Name Here")
+        .navigationTitle(contact.formatedName)
     }
 }
 
-struct ContactDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            ContactDetailView()
-        }
-    }
-}
+//struct ContactDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack {
+//            ContactDetailView()
+//        }
+//    }
+//}

@@ -8,35 +8,51 @@
 import SwiftUI
 
 struct ContactRowView: View {
+    @Environment(\.managedObjectContext) private var managedObjectContext
+    @ObservedObject var contact: Contact
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Name")
+            Text(contact.formatedName)
                 .font(.system(size: 24, design: .rounded))
                 .bold()
             
-            Text("Email")
+            Text(contact.email)
                 .font(.callout.bold())
             
-            Text("Phone Number")
+            Text(contact.phoneNumber)
                 .font(.callout.bold())
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .overlay(alignment: .topTrailing) {
             Button {
-                // TODO: Handle Favorite Logic
+                toggleFavorite()
             } label: {
                 Image(systemName: "star")
                     .font(.title3)
                     .symbolVariant(.fill)
-                    .foregroundColor(.gray.opacity(0.3))
+                    .foregroundColor(contact.isFavorite ? .yellow : .gray.opacity(0.3))
             }
             .buttonStyle(.plain)
         }
     }
 }
 
-struct ContactRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContactRowView()
+private extension ContactRowView {
+    func toggleFavorite() {
+        contact.isFavorite.toggle()
+        do {
+            if managedObjectContext.hasChanges {
+                try managedObjectContext.save()
+            }
+        } catch {
+            print(error)
+        }
     }
 }
+
+//struct ContactRowView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContactRowView()
+//    }
+//}

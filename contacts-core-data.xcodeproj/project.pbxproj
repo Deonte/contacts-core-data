@@ -17,6 +17,7 @@
 		FD89FAC52962963A00FE4F95 /* ContactRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89FAC42962963A00FE4F95 /* ContactRowView.swift */; };
 		FD89FAC72962967B00FE4F95 /* ContactDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89FAC62962967B00FE4F95 /* ContactDetailView.swift */; };
 		FD89FAC92962981C00FE4F95 /* CreateContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89FAC82962981C00FE4F95 /* CreateContactView.swift */; };
+		FD89FACC29629C0500FE4F95 /* EditContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89FACB29629C0500FE4F95 /* EditContactViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		FD89FAC42962963A00FE4F95 /* ContactRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRowView.swift; sourceTree = "<group>"; };
 		FD89FAC62962967B00FE4F95 /* ContactDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailView.swift; sourceTree = "<group>"; };
 		FD89FAC82962981C00FE4F95 /* CreateContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContactView.swift; sourceTree = "<group>"; };
+		FD89FACB29629C0500FE4F95 /* EditContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +69,7 @@
 				FD89FAC129628ECC00FE4F95 /* Provider */,
 				FD89FAC029628D9A00FE4F95 /* Model */,
 				FD89FAAF2962867D00FE4F95 /* ContentView.swift */,
-				FD89FAC82962981C00FE4F95 /* CreateContactView.swift */,
+				FD89FACA29629BED00FE4F95 /* Create */,
 				FD89FAC42962963A00FE4F95 /* ContactRowView.swift */,
 				FD89FAC62962967B00FE4F95 /* ContactDetailView.swift */,
 				FD89FAB12962867E00FE4F95 /* Assets.xcassets */,
@@ -99,6 +101,15 @@
 				FD89FAC229628EFF00FE4F95 /* ContactsProvider.swift */,
 			);
 			path = Provider;
+			sourceTree = "<group>";
+		};
+		FD89FACA29629BED00FE4F95 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				FD89FAC82962981C00FE4F95 /* CreateContactView.swift */,
+				FD89FACB29629C0500FE4F95 /* EditContactViewModel.swift */,
+			);
+			path = Create;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,6 +185,7 @@
 				FD89FABF29628D8100FE4F95 /* Contact.swift in Sources */,
 				FD89FAC329628EFF00FE4F95 /* ContactsProvider.swift in Sources */,
 				FD89FAC72962967B00FE4F95 /* ContactDetailView.swift in Sources */,
+				FD89FACC29629C0500FE4F95 /* EditContactViewModel.swift in Sources */,
 				FD89FABD296288E700FE4F95 /* ContactsDataModel.xcdatamodeld in Sources */,
 				FD89FAB02962867D00FE4F95 /* ContentView.swift in Sources */,
 				FD89FAC92962981C00FE4F95 /* CreateContactView.swift in Sources */,
