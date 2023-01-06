@@ -11,9 +11,11 @@ struct ContactRowView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @ObservedObject var contact: Contact
     
+    let provider: ContactsProvider
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(contact.formatedName)
+            Text(contact.formattedName)
                 .font(.system(size: 24, design: .rounded))
                 .bold()
             
@@ -42,17 +44,16 @@ private extension ContactRowView {
     func toggleFavorite() {
         contact.isFavorite.toggle()
         do {
-            if managedObjectContext.hasChanges {
-                try managedObjectContext.save()
-            }
+           try provider.persist(in: managedObjectContext)
         } catch {
             print(error)
         }
     }
 }
 
-//struct ContactRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContactRowView()
-//    }
-//}
+struct ContactRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        let previewProvider = ContactsProvider.shared
+        ContactRowView(contact: .preview(context: previewProvider.viewContext), provider: previewProvider)
+    }
+}

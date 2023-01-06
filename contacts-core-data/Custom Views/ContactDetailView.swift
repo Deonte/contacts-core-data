@@ -34,14 +34,14 @@ struct ContactDetailView: View {
                 Text(contact.notes)
             }
         }
-        .navigationTitle(contact.formatedName)
+        .navigationTitle(contact.formattedName)
     }
 }
 
-//struct ContactDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationStack {
-//            ContactDetailView()
-//        }
-//    }
-//}
+struct ContactDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            ContactDetailView(contact: .preview())
+        }
+    }
+}

@@ -12,6 +12,8 @@ struct CreateContactView: View {
     
     @ObservedObject var viewModel: EditContactViewModel
     
+    @State private var hasError: Bool = false
+    
     var body: some View {
         List {
             Section("General") {
@@ -33,16 +35,11 @@ struct CreateContactView: View {
                 TextField("", text:  $viewModel.contact.notes, axis: .vertical)
             }
         }
-        .navigationTitle("Name Here")
+        .navigationTitle(viewModel.isNew ? "New Contact" : "Edit Contact")
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Done") {
-                    do {
-                        try viewModel.save()
-                        dismiss()
-                    } catch {
-                        print(error)
-                    }
+                    validate()
                 }
             }
             
@@ -52,13 +49,37 @@ struct CreateContactView: View {
                 }
             }
         }
+        .alert("Something Went Wrong", isPresented: $hasError) {
+            
+        } message: {
+            Text("It looks like your form is invalid.")
+        }
+
+    }
+}
+
+private extension CreateContactView {
+    func validate() {
+        if viewModel.contact.isValid {
+            do {
+                try viewModel.save()
+                dismiss()
+            } catch {
+                print(error)
+            }
+        } else {
+            hasError = true
+        }
     }
 }
 
 struct CreateContactView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CreateContactView(viewModel: .init(provider: .shared))
+            let preview = ContactsProvider.shared
+            CreateContactView(viewModel: .init(provider: preview))
+                .environment(\.managedObjectContext, preview.viewContext)
+            
         }
     }
 }

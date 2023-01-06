@@ -11,7 +11,7 @@ import SwiftUI
 struct ContactsCoreData: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContactsListView()
                 .environment(\.managedObjectContext, ContactsProvider.shared.viewContext)
         }
     }
